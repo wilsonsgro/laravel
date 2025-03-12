@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Providers\MiscServiceProvider;
 
 
 class AuthController extends Controller 
@@ -31,6 +32,8 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
+        $geolocation = app(MiscServiceProvider::class);
+        $geolocation->getNames();
         return $this->respondWithToken($token);
     }
 

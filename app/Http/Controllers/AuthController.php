@@ -15,6 +15,16 @@ class AuthController extends Controller
      */
     public function login()
     {
+        /*
+            curl --request POST \
+            --url http://laravel.local.it/api/auth/login \
+            --header 'Content-Type: application/json' \
+            --header 'User-Agent: insomnia/10.2.0' \
+            --data '{
+                "email": "wilson.sgro@libero.it",
+                "password": "pippo1234!"
+            }'
+        */
         $credentials = request(['email', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {

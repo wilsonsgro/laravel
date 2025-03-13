@@ -9,3 +9,11 @@ Route::get('/', function () {
 
 Route::get('/getname', [TestController::class, 'getNames']);
 Route::get('/testfacade', [TestController::class, 'testFacade']);
+
+Route::get('/greeting', function () {
+    return view('greeting', ['name' => 'James']);
+});
+
+Route::get('/addmintest', function () {
+    return view('admin.test', ['name' => 'James']);
+});

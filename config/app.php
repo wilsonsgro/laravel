@@ -1,5 +1,4 @@
 <?php
-
 return [
 
     /*
@@ -123,4 +122,10 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+        my custom Facade
+    */
+    'aliases' => [
+        'Greeting' => App\Facades\Greeting::class,
+     ]
 ];

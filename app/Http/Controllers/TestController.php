@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\Geolocation;
 use App\Services\Satellite;
 use Illuminate\Http\Request;
+use App\Facades\Greeting;
 
 class TestController extends Controller
 {
@@ -22,5 +23,10 @@ class TestController extends Controller
         $dati = $this->geolocation->getNames();
         $dati2 = $this->satellite->getName();
         return $dati . " - ". $dati2;
+    }
+
+    public function testFacade(): string
+    {
+        return Greeting::greet();
     }
 }

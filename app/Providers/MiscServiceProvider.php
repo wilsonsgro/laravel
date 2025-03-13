@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Helper\Greeting;
 use App\Services\Geolocation;
 use App\Services\Map;
 use App\Services\Satellite;
@@ -21,15 +22,19 @@ class MiscServiceProvider extends ServiceProvider
                 $map = $app->make(Map::class);
                 $satellite = $app->make(Satellite::class);
                 return new Geolocation($map,$satellite);
-            });
+        });
 
 
-            $this->app->bind(
-                Satellite::class,
-                function(Application $app) {
-                    return new Satellite();
-                });
-        
+        $this->app->bind(
+            Satellite::class,
+            function(Application $app) {
+                return new Satellite();
+        });
+
+
+       $this->app->bind('greeting',function(){
+            return new Greeting();
+       });
     }
 
     /**
@@ -37,6 +42,6 @@ class MiscServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+      //
     }
 }

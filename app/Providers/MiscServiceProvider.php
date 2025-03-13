@@ -22,6 +22,13 @@ class MiscServiceProvider extends ServiceProvider
                 $satellite = $app->make(Satellite::class);
                 return new Geolocation($map,$satellite);
             });
+
+
+            $this->app->bind(
+                Satellite::class,
+                function(Application $app) {
+                    return new Satellite();
+                });
         
     }
 

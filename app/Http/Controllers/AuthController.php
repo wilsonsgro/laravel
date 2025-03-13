@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Services\Geolocation;
+use App\Services\Satellite;
 
 class AuthController extends Controller 
 {
     protected $geolocation;
-    
-    public function __construct(Geolocation $geolocation)
+    protected $satellite;
+
+    public function __construct(Geolocation $geolocation, Satellite $satellite)
     {
         $this->geolocation = $geolocation;
+        $this->satellite = $satellite;
     }
     /**
      * Get a JWT via given credentials.
@@ -38,6 +41,7 @@ class AuthController extends Controller
         }
 
         $dati = $this->geolocation->getNames();
+        $dati2 = $this->satellite->getName();
         return $this->respondWithToken($token);
     }
 

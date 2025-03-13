@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Providers\MiscServiceProvider;
-
+use App\Services\Geolocation;
 
 class AuthController extends Controller 
 {
+    protected $geolocation;
+    
+    public function __construct(Geolocation $geolocation)
+    {
+        $this->geolocation = $geolocation;
+    }
     /**
      * Get a JWT via given credentials.
      *
@@ -32,8 +37,7 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        $geolocation = app(MiscServiceProvider::class);
-        $geolocation->getNames();
+        $dati = $this->geolocation->getNames();
         return $this->respondWithToken($token);
     }
 
